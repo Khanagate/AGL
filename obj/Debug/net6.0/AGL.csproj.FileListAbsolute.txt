@@ -1,0 +1,15 @@
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.csproj.AssemblyReference.cache
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.AssemblyInfoInputs.cache
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.AssemblyInfo.cs
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.csproj.CoreCompileInputs.cache
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\bin\Debug\net6.0\AGL.exe
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\bin\Debug\net6.0\AGL.deps.json
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\bin\Debug\net6.0\AGL.runtimeconfig.json
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\bin\Debug\net6.0\AGL.dll
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\bin\Debug\net6.0\ref\AGL.dll
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\bin\Debug\net6.0\AGL.pdb
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.dll
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\ref\AGL.dll
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.pdb
+C:\Users\Nick\Dropbox\Projects\e-CI\AGL\obj\Debug\net6.0\AGL.genruntimeconfig.cache
