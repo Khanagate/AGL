@@ -69,7 +69,7 @@ public class Owner
     {
 
     }
-
+    
     public Owner(string name, string gender, int age, List<Pet> pets)
     {
         this.name = name;
@@ -177,7 +177,7 @@ public class Program
             owner.sortPetNames();
             if (owner.pets != null)
             {
-                Console.WriteLine("=== " + owner.name + " ===");
+                Console.WriteLine("=== " + owner.gender + " owner ===");
                 owner.showCats();
             }
         }
