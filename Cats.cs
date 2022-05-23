@@ -58,6 +58,40 @@ Use the code to showcase your skill.
 // Visualise what C# class and properties the JSON objects will need
 // https://json2csharp.com/
 
+
+/* public class PersonConverter : JsonConverter<Owner>
+{
+    public override bool CanConvert(Type typeToConvert)
+    {
+        return typeof(Owner).IsAssignableFrom(typeToConvert);
+    }
+
+    public override Owner Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+    {
+        using (var jsonDoc = JsonDocument.ParseValue(ref reader))
+        {
+            //if the property isn't there, let it blow up
+            switch (jsonDoc.RootElement.GetProperty("Type").GetString())
+            {
+                case nameof(Owner):
+                    return jsonDoc.RootElement.Deserialize<Owner>(options);
+                //warning: If you're not using the JsonConverter attribute approach,
+                //make a copy of options without this converter
+                default:
+                    throw new JsonException("'Type' doesn't match a known derived type");
+            }
+
+        }
+    }
+
+    public override void Write(Utf8JsonWriter writer, Owner owner, JsonSerializerOptions options)
+    {
+        JsonSerializer.Serialize(writer, (object)owner, options);
+        //warning: If you're not using the JsonConverter attribute approach,
+        //make a copy of options without this converter
+    }
+}*/
+
 public class Owner
 {
     public string name { get; set; }
@@ -65,11 +99,11 @@ public class Owner
     public int age { get; set; }
     public List<Pet> pets { get; set; }
     
-    public Owner()
+    /* public Owner()
     {
 
-    }
-    
+    } */
+
     public Owner(string name, string gender, int age, List<Pet> pets)
     {
         this.name = name;
@@ -93,7 +127,7 @@ public class Owner
 
     public void showCats()
     {
-        if (pets !=null)
+        if (pets != null)
         {
             foreach(Pet pet in pets)
             {
@@ -119,11 +153,6 @@ public class Pet
     public string name { get; set; }
     public string type { get; set; }
     
-    public Pet()
-    {
-
-    }
-
     public Pet(string name, string type)
     {
         this.name = name;
@@ -152,7 +181,11 @@ public class Program
         
         string fileName = "people.json";
         string jsonString = File.ReadAllText(fileName);
-        owners = JsonSerializer.Deserialize<List<Owner>>(jsonString)!;
+        var deserialize = JsonSerializer.Deserialize<List<Owner>>(jsonString)!;
+        if (deserialize != null)
+        {
+            owners = deserialize;
+        }
     }
 
     // Uses obsolete Webclient()
@@ -163,9 +196,36 @@ public class Program
     // https://docs.microsoft.com/en-us/dotnet/api/system.net.webclient.openread?view=net-6.0
     static void parseWeb(ref List<Owner> owners)
     {
-        using var client = new WebClient();
-        Stream jsonStream = client.OpenRead("http://agl-developer-test.azurewebsites.net/people.json");
-        owners = JsonSerializer.Deserialize<List<Owner>>(jsonStream)!;
+
+        var client = new WebClient();
+        try
+        {
+            // send request   
+            Stream jsonStream = client.OpenRead("http://agl-developer-test.azurewebsites.net/people.json");
+            var deserialize = JsonSerializer.Deserialize<List<Owner>>(jsonStream)!;
+            if (deserialize != null)
+            {
+                owners = deserialize;
+            }
+        }
+
+        catch (WebException exception)
+        {
+            string responseText;
+
+            var responseStream = exception.Response?.GetResponseStream();
+
+                if (responseStream != null)
+                {
+                    using (var reader = new StreamReader(responseStream))
+                    {
+                        responseText = reader.ReadToEnd();
+                        Console.WriteLine(responseText);
+                    }
+                }
+
+        }
+ 
     }
     
     public static void Main()
