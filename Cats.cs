@@ -59,38 +59,7 @@ Use the code to showcase your skill.
 // https://json2csharp.com/
 
 
-/* public class PersonConverter : JsonConverter<Owner>
-{
-    public override bool CanConvert(Type typeToConvert)
-    {
-        return typeof(Owner).IsAssignableFrom(typeToConvert);
-    }
 
-    public override Owner Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-    {
-        using (var jsonDoc = JsonDocument.ParseValue(ref reader))
-        {
-            //if the property isn't there, let it blow up
-            switch (jsonDoc.RootElement.GetProperty("Type").GetString())
-            {
-                case nameof(Owner):
-                    return jsonDoc.RootElement.Deserialize<Owner>(options);
-                //warning: If you're not using the JsonConverter attribute approach,
-                //make a copy of options without this converter
-                default:
-                    throw new JsonException("'Type' doesn't match a known derived type");
-            }
-
-        }
-    }
-
-    public override void Write(Utf8JsonWriter writer, Owner owner, JsonSerializerOptions options)
-    {
-        JsonSerializer.Serialize(writer, (object)owner, options);
-        //warning: If you're not using the JsonConverter attribute approach,
-        //make a copy of options without this converter
-    }
-}*/
 
 public class Owner
 {
@@ -183,11 +152,10 @@ public class Program
     // https://inspiration.nlogic.ca/en/a-comparison-of-newtonsoft.json-and-system.text.json
     static void parse(ref List<Owner> owners)
     {
-        
         string fileName = "people.json";
         string jsonString = File.ReadAllText(fileName);
         var deserialize = JsonSerializer.Deserialize<List<Owner>>(jsonString)!;
-        
+
         if (deserialize != null)
         {
             owners = deserialize;
@@ -202,7 +170,6 @@ public class Program
     // https://docs.microsoft.com/en-us/dotnet/api/system.net.webclient.openread?view=net-6.0
     static void parseWeb(ref List<Owner> owners)
     {
-
         var client = new WebClient();
 
         try
@@ -231,7 +198,6 @@ public class Program
                     }
                 }
         }
- 
     }
     
     public static void Main()
