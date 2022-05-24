@@ -99,10 +99,10 @@ public class Owner
     public int age { get; set; }
     public List<Pet> pets { get; set; }
     
-    /* public Owner()
+    public Owner()
     {
 
-    } */
+    }
 
     public Owner(string name, string gender, int age, List<Pet> pets)
     {
@@ -153,6 +153,11 @@ public class Pet
     public string name { get; set; }
     public string type { get; set; }
     
+    public Pet()
+    {
+        
+    }
+
     public Pet(string name, string type)
     {
         this.name = name;
@@ -182,6 +187,7 @@ public class Program
         string fileName = "people.json";
         string jsonString = File.ReadAllText(fileName);
         var deserialize = JsonSerializer.Deserialize<List<Owner>>(jsonString)!;
+        
         if (deserialize != null)
         {
             owners = deserialize;
@@ -198,6 +204,7 @@ public class Program
     {
 
         var client = new WebClient();
+
         try
         {
             // send request   
@@ -223,7 +230,6 @@ public class Program
                         Console.WriteLine(responseText);
                     }
                 }
-
         }
  
     }
